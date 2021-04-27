@@ -1,12 +1,10 @@
-/*
-
-    This module contains all of the data, or state, for the
-    application. It exports two functions that allow other
-    modules to get copies of the state.
-
-*/
 // QUESTION: style.style vs style.name
 const database = {
+    orderBuilder: {
+        metalId: 0,
+        sizeId: 0,
+        styleId: 0
+    },
     styles: [
         { id: 1, style: "Classic", price: 500 },
         { id: 2, style: "Modern", price: 710 },
@@ -37,11 +35,21 @@ const database = {
     ]
 }
 
+// GETTERS
 export const getMetals = () => {
     return [...database.metals]
 }
-
 // implicit return -- works exact same as getMetals
 export const getOrders = () => [...database.customOrders]
 export const getSizes = () => [...database.sizes]
 export const getStyles = () => [...database.styles]
+
+export const setMetal = (id) => {
+    database.orderBuilder.metalId = id
+}
+export const setStyle = (id) => {
+    database.orderBuilder.styleId = id
+}
+export const setSize = (id) => {
+    database.orderBuilder.sizeId = id
+}

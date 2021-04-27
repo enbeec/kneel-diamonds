@@ -1,4 +1,4 @@
-import { getStyles } from "./database.js"
+import { setStyle, getStyles } from "./database.js"
 
 const styles = getStyles()
 
@@ -6,10 +6,7 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "style") {
-            // styleId is in event.target.value
-            const targetId = parseInt(event.target.value)
-            const style = styles.find(styleObj => styleObj.id === targetId)
-            window.alert(`User chose style ${style.style}`)
+            setStyle(parseInt(event.target.value)) // value of target is id of Style
         }
     }
 )
