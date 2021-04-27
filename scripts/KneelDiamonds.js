@@ -1,12 +1,17 @@
+import { addCustomOrder } from "./database.js"
 import { DiamondSizes } from "./DiamondSizes.js"
 import { JewelryStyles } from "./JewelryStyles.js"
 import { Metals } from "./Metals.js"
 import { Orders } from "./Orders.js"
 
+// QUESTION: why arent we getting the button and adding an event listener to it directly?
 document.addEventListener(
     "click",
     (event) => {
-        // FIXME: missing click event
+        if (event.target.id === "orderButton") {
+            console.log("Adding a new order to the database")
+            addCustomOrder()
+        }
     }
 )
 

@@ -6,5 +6,11 @@ const renderAllHTML = () => {
     mainContainer.innerHTML = KneelDiamonds()
 }
 
+document.addEventListener("stateChanged",
+    (event) => {
+        console.log("Event: stateChanged --> regenerating HTML")
+        renderAllHTML()
+    })
+
 renderAllHTML()
 

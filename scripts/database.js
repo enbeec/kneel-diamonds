@@ -1,6 +1,7 @@
 // QUESTION: style.style vs style.name
 const database = {
     orderBuilder: {
+        id: 0,
         metalId: 0,
         sizeId: 0,
         styleId: 0
@@ -35,15 +36,7 @@ const database = {
     ]
 }
 
-// GETTERS
-export const getMetals = () => {
-    return [...database.metals]
-}
-// implicit return -- works exact same as getMetals
-export const getOrders = () => [...database.customOrders]
-export const getSizes = () => [...database.sizes]
-export const getStyles = () => [...database.styles]
-
+// SETTERS
 export const setMetal = (id) => {
     database.orderBuilder.metalId = id
 }
@@ -53,3 +46,27 @@ export const setStyle = (id) => {
 export const setSize = (id) => {
     database.orderBuilder.sizeId = id
 }
+
+export const addCustomOrder = () => {
+    const newOrder = {...database.orderBuilder}
+    // QUESTION: could I (would it be the right place to) validate that the entire order is filled out?
+    newOrder.id = [...database.customOrders].pop().id + 1 // QUESTION: so pop doesn't modify the array?
+    newOrder.timestamp = Date.now()
+    database.customOrders.push(newOrder)
+    database.orderBuilder = {
+        id: 0,
+        metalId: 0,
+        sizeId: 0,
+        styleId: 0
+    }
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+// GETTERS
+export const getMetals = () => {
+    return [...database.metals]
+}
+// implicit return -- works exact same as getMetals
+export const getOrders = () => [...database.customOrders]
+export const getSizes = () => [...database.sizes]
+export const getStyles = () => [...database.styles]
