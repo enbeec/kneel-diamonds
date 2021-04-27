@@ -40,4 +40,7 @@ export const getMetals = () => {
     return [...database.metals]
 }
 
-// FIXME: missing exports in database
+// implicit return -- works exact same as getMetals
+export const getOrders = () => [...database.customOrders]
+export const getSizes = () => [...database.sizes]
+export const getStyles = () => [...database.styles]
