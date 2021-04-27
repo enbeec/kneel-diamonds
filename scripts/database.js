@@ -5,6 +5,7 @@
     modules to get copies of the state.
 
 */
+// QUESTION: style.style vs style.name
 const database = {
     styles: [
         { id: 1, style: "Classic", price: 500 },

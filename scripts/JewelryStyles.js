@@ -5,7 +5,12 @@ const styles = getStyles()
 document.addEventListener(
     "change",
     (event) => {
-        // FIXME: missing change event for styles
+        if (event.target.name === "style") {
+            // styleId is in event.target.value
+            const targetId = parseInt(event.target.value)
+            const style = styles.find(styleObj => styleObj.id === targetId)
+            window.alert(`User chose style ${style.style}`)
+        }
     }
 )
 
@@ -14,11 +19,12 @@ export const JewelryStyles = () => {
 
     // Use .map() for converting objects to <li> elements
     const listItems = styles.map(
-        styleObj => {
-            return `<li>${styleObj.style}</li>`
+        style => {
+            return `<li>
+                <input type="radio" name="style" value="${style.id}" /> ${style.style}
+            </li>`
         }
     )
-
 
     // Join all of the strings in the array into a single string
     html += listItems.join("")

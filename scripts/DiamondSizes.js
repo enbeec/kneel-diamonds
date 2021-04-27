@@ -1,13 +1,15 @@
 import { getSizes } from "./database.js"
 
-const metals = getSizes()
+const sizes = getSizes()
 
 document.addEventListener(
     "change",
     (event) => {
-        // FIXME: missing change event for size
         if (event.target.name === "size") {
-            window.alert(``)
+            // event.target.value is the id of the selected size
+            const targetId = parseInt(event.target.value)
+            const size = sizes.find(sizeObj => sizeObj.id === targetId)
+            window.alert(`User chose ${size.carets} carets`)
         }
     }
 )
@@ -16,7 +18,7 @@ export const DiamondSizes = () => {
     let html = "<ul>"
 
     // Use .map() for converting objects to <li> elements
-    const listItems = metals.map(size => {
+    const listItems = sizes.map(size => {
         return `<li>
             <input type="radio" name="size" value="${size.id}" /> ${size.carets}
         </li>`
