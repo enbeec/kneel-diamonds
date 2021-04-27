@@ -16,8 +16,9 @@ export const DiamondSizes = () => {
 
     // Use .map() for converting objects to <li> elements
     const listItems = sizes.map(size => {
+        // TODO: put the prices in a span or something to space and style them
         return `<li>
-            <input type="radio" name="size" value="${size.id}" /> ${size.carets}
+            <input type="radio" name="size" value="${size.id}" /> ${size.carets} carets costs $${size.price.toFixed(2)}
         </li>`
     })
 

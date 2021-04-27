@@ -1,13 +1,27 @@
-import { getOrders } from "./database.js"
+import { getSizes, getMetals, getOrders, getStyles } from "./database.js"
+
+const metals = getMetals()
+const styles = getStyles()
+const sizes = getSizes()
 
 const buildOrderListItem = (order) => {
+    // find the the right object and store it's price
+    const metalPrice = metals.find((metal) => metal.id === order.metalId).price
+    const stylePrice = styles.find((style) => style.id === order.styleId).price
+    const sizePrice = sizes.find((size) => size.id === order.sizeId).price
+    const totalCost = sizePrice + stylePrice + metalPrice
+    const costString = totalCost.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD"
+        }
+    )
     return `<li>
-        Order #${order.id} was placed on ${order.timestamp}
+        Order #${order.id} was placed on ${order.timestamp} and costs ${costString}
     </li>`
 }
 
 export const Orders = () => {
-        // TODO: Can you explain why the state variable has to be inside the component function for Orders, but not the others?
+    // we need to find new orders when we re-render the page
     const orders = getOrders()
 
     let html = "<ul>"
