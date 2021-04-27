@@ -2,11 +2,13 @@
 document.addEventListener(
     "click",
     (event) => {
+        // FIXME: missing click event
     }
 )
 
+// FIXME: interpolate sizes, styles, metals and orders into KneelDiamonds()
 export const KneelDiamonds = () => {
-    return `
+    return /*html*/`
         <h1>Kneel Diamonds</h1>
 
         <article class="choices">

@@ -5,6 +5,7 @@ const metals = getSizes()
 document.addEventListener(
     "change",
     (event) => {
+        // FIXME: missing change event for size
         if (event.target.name === "size") {
             window.alert(``)
         }
