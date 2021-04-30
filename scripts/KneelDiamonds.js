@@ -4,19 +4,6 @@ import { JewelryStyles } from "./Styles.js"
 import { Metals } from "./Metals.js"
 import { Orders } from "./Orders.js"
 
-// QUESTION: why arent we getting the button and adding an event listener to it directly?
-//  UPDATE: okay so if it runs here, the button isn't in the DOM yet. I think I see why...
-//          I could still do this....
-// const createOrderButton = () => {
-//     document.querySelector('#orderButton').addEventListener("click",
-//         (event) => {
-//             console.log("Adding a new order to the database")
-//             addCustomOrder()
-//         }
-//     )
-// }
-// ...and then call it after the initial render?
-
 document.addEventListener(
     "click",
     (event) => {
