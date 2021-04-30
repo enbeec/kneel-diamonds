@@ -7,7 +7,6 @@ document.addEventListener(
     (event) => {
         if (event.target.name === "size") {
             const [, inputId ] = event.target.value.split("--") // splitting: "style--1" -> ["style", "1"]
-            debugger
             setSize(parseInt(inputId))
         }
     }
