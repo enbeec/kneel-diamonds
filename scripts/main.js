@@ -12,5 +12,6 @@ document.addEventListener("stateChanged",
         renderAllHTML()
     })
 
+// first render is manual because we're not doing anything async like fetching
 renderAllHTML()
 
