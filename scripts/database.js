@@ -1,11 +1,11 @@
-/*
-
-    This module contains all of the data, or state, for the
-    application. It exports two functions that allow other
-    modules to get copies of the state.
-
-*/
+// QUESTION: style.style vs style.name
 const database = {
+    orderBuilder: {
+        id: 0,
+        metalId: 0,
+        sizeId: 0,
+        styleId: 0
+    },
     styles: [
         { id: 1, style: "Classic", price: 500 },
         { id: 2, style: "Modern", price: 710 },
@@ -36,7 +36,41 @@ const database = {
     ]
 }
 
+// SETTERS
+export const setMetal = (id) => {
+    database.orderBuilder.metalId = id
+}
+export const setStyle = (id) => {
+    database.orderBuilder.styleId = id
+}
+export const setSize = (id) => {
+    database.orderBuilder.sizeId = id
+}
+
+export const addCustomOrder = () => {
+    const newOrder = {...database.orderBuilder}
+    if (newOrder.metalId === 0 || newOrder.sizeId === 0 || newOrder.styleId === 0) {
+        window.alert("Can't add an empty order!")
+        return
+    }
+    // QUESTION: could I (would it be the right place to) validate that the entire order is filled out?
+    newOrder.id = [...database.customOrders].pop().id + 1 // QUESTION: so pop doesn't modify the array?
+    newOrder.timestamp = Date.now()
+    database.customOrders.push(newOrder)
+    database.orderBuilder = {
+        id: 0,
+        metalId: 0,
+        sizeId: 0,
+        styleId: 0
+    }
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+// GETTERS
 export const getMetals = () => {
     return [...database.metals]
 }
-
+// implicit return -- works exact same as getMetals
+export const getOrders = () => [...database.customOrders]
+export const getSizes = () => [...database.sizes]
+export const getStyles = () => [...database.styles]
