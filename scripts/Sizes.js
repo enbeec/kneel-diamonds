@@ -7,6 +7,7 @@ document.addEventListener(
     (event) => {
         if (event.target.name === "size") {
             const [, inputId ] = event.target.value.split("--") // splitting: "style--1" -> ["style", "1"]
+            debugger
             setSize(parseInt(inputId))
         }
     }
@@ -19,7 +20,7 @@ export const DiamondSizes = () => {
     const listItems = sizes.map(size => {
         // TODO: put the prices in a span or something to space and style them
         return `<li>
-            <input type="radio" name="size" value="${size.id}" /> ${size.carets} carets costs $${size.price.toFixed(2)}
+            <input type="radio" name="size" value="size--${size.id}" /> ${size.carets} carets costs $${size.price.toFixed(2)}
         </li>`
     })
 

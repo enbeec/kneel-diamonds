@@ -50,7 +50,7 @@ export const setSize = (id) => {
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
     if (newOrder.metalId === 0 || newOrder.sizeId === 0 || newOrder.styleId === 0) {
-        window.alert("build your order BEFORE you submit it, dummy")
+        window.alert("Can't add an empty order!")
         return
     }
     // QUESTION: could I (would it be the right place to) validate that the entire order is filled out?

@@ -15,8 +15,9 @@ const buildOrderListItem = (order) => {
             currency: "USD"
         }
     )
+    let dateString = new Date(order.timestamp).toString().split(" ").slice(0,5).join(" ")
     return `<li>
-        Order #${order.id} was placed on ${order.timestamp} and costs ${costString}
+        Order #${order.id} was placed on ${dateString} and costs ${costString}
     </li>`
 }
 

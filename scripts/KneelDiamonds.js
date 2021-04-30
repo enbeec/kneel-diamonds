@@ -21,7 +21,6 @@ document.addEventListener(
     "click",
     (event) => {
         if (event.target.id === "orderButton") {
-            console.log("Adding a new order to the database")
             addCustomOrder()
         }
     }
