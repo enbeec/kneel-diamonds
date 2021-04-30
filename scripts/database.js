@@ -49,6 +49,10 @@ export const setSize = (id) => {
 
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
+    if (newOrder.metalId === 0 || newOrder.sizeId === 0 || newOrder.styleId === 0) {
+        window.alert("build your order BEFORE you submit it, dummy")
+        return
+    }
     // QUESTION: could I (would it be the right place to) validate that the entire order is filled out?
     newOrder.id = [...database.customOrders].pop().id + 1 // QUESTION: so pop doesn't modify the array?
     newOrder.timestamp = Date.now()
