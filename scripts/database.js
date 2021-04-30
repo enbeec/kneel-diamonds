@@ -55,7 +55,7 @@ export const addCustomOrder = () => {
     }
     // QUESTION: could I (would it be the right place to) validate that the entire order is filled out?
     newOrder.id = [...database.customOrders].pop().id + 1 // QUESTION: so pop doesn't modify the array?
-    newOrder.timestamp = Date.now()
+    newOrder.timestamp = Date.now(1587406328000)
     database.customOrders.push(newOrder)
     database.orderBuilder = {
         id: 0,

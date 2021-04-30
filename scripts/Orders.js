@@ -10,12 +10,14 @@ const buildOrderListItem = (order) => {
     const stylePrice = styles.find((style) => style.id === order.styleId).price
     const sizePrice = sizes.find((size) => size.id === order.sizeId).price
     const totalCost = sizePrice + stylePrice + metalPrice
-    const costString = totalCost.toLocaleString("en-US", {
+    const costString = totalCost.toLocaleString("en-US", 
+        {
             style: "currency",
             currency: "USD"
         }
     )
-    let dateString = new Date(order.timestamp).toString().split(" ").slice(0,5).join(" ")
+    // let dateString = new Date(order.timestamp).toString().split(" ").slice(0,5).join(" ") // lol
+    let dateString = new Date(order.timestamp).toLocaleString()
     return `<li>
         Order #${order.id} was placed on ${dateString} and costs ${costString}
     </li>`
