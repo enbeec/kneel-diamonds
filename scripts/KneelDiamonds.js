@@ -1,6 +1,6 @@
 import { addCustomOrder } from "./database.js"
-import { DiamondSizes } from "./DiamondSizes.js"
-import { JewelryStyles } from "./JewelryStyles.js"
+import { DiamondSizes } from "./Sizes.js"
+import { JewelryStyles } from "./Styles.js"
 import { Metals } from "./Metals.js"
 import { Orders } from "./Orders.js"
 
