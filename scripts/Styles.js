@@ -6,7 +6,8 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "style") {
-            setStyle(parseInt(event.target.value)) // value of target is id of Style
+            const [, inputId ] = event.target.value.split("--") // splitting: "style--1" -> ["style", "1"]
+            setStyle(parseInt(inputId)) 
         }
     }
 )
@@ -19,7 +20,7 @@ export const JewelryStyles = () => {
         // TODO: put the prices in a span or something to space and style them
         style => {
             return `<li>
-                <input type="radio" name="style" value="${style.id}" /> ${style.style} is $${style.price.toFixed(2)}
+                <input type="radio" name="style" value="style--${style.id}" /> ${style.style} is $${style.price.toFixed(2)}
             </li>`
         }
     )

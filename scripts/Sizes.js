@@ -6,7 +6,8 @@ document.addEventListener(
     "change",
     (event) => {
         if (event.target.name === "size") {
-            setSize(parseInt(event.target.value)) // value of target is id of Size
+            const [, inputId ] = event.target.value.split("--") // splitting: "style--1" -> ["style", "1"]
+            setSize(parseInt(inputId))
         }
     }
 )
