@@ -49,25 +49,32 @@ export const setSize = (id) => {
 
 export const addCustomOrder = () => {
   const newOrder = { ...database.orderBuilder };
-  // TODO this is a naive bit of validation
   if (
     newOrder.metalId === 0 ||
     newOrder.sizeId === 0 ||
     newOrder.styleId === 0
   ) {
-    window.alert("Can't add an empty order!");
-    return;
+    return false;
   }
-  newOrder.id = [...database.customOrders].pop().id + 1;
-  newOrder.timestamp = Date.now(1587406328000);
+
+  // newOrder.id is either 1 or max ID + 1
+  newOrder.id =
+    database.orders[length] > 0 ? [...database.customOrders].pop().id + 1 : 1;
+  newOrder.timestamp = Date.now();
+
+  // push in new order
   database.customOrders.push(newOrder);
+  // reset order builder
   database.orderBuilder = {
     id: 0,
     metalId: 0,
     sizeId: 0,
     styleId: 0,
   };
+  // notify for re-rendering
   document.dispatchEvent(new CustomEvent("stateChanged"));
+  // success!
+  return true;
 };
 
 // GETTERS
