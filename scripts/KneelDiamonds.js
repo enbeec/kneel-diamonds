@@ -1,20 +1,21 @@
-import { addCustomOrder } from "./database.js"
-import { DiamondSizes } from "./Sizes.js"
-import { JewelryStyles } from "./Styles.js"
-import { Metals } from "./Metals.js"
-import { Orders } from "./Orders.js"
+import { addCustomOrder } from "./database.js";
+import { DiamondSizes } from "./Sizes.js";
+import { JewelryStyles } from "./Styles.js";
+import { Metals } from "./Metals.js";
+import { Orders } from "./Orders.js";
 
-document.addEventListener(
-    "click",
-    (event) => {
-        if (event.target.id === "orderButton") {
-            addCustomOrder()
-        }
+// TODO move this to a module
+document.addEventListener("click", (event) => {
+  if (event.target.id === "orderButton") {
+    const submitSuccess = addCustomOrder();
+    if (!submitSuccess) {
+      window.alert("Order incomplete.");
     }
-)
+  }
+});
 
 export const KneelDiamonds = () => {
-    return /*html*/`
+  return /*html*/ `
         <h1>Kneel Diamonds</h1>
 
         <article class="choices">
@@ -32,6 +33,7 @@ export const KneelDiamonds = () => {
             </section>
         </article>
 
+        <!-- TODO move this to a module -->
         <article>
             <button id="orderButton">Create Custom Order</button>
         </article>
@@ -40,6 +42,5 @@ export const KneelDiamonds = () => {
             <h2>Custom Jewelry Orders</h2>
             ${Orders()}
         </article>
-    `
-}
-
+    `;
+};
